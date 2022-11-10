@@ -1,8 +1,11 @@
 import React from "react";
+import TableShop from "../Component/TableShop"
 
 const ViewComponent = (props)=>{
-    return(
-        <h1> Test Product View</h1>
+    return(<>
+        <h1> Product View</h1>
+        <TableShop/>
+        </>
     )
 }
 
