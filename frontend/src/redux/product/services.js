@@ -8,3 +8,11 @@ export const getAllProductService = async () => {
     console.log("error: ", err);
   }
 };
+export const createProductService = async (data) => {
+  try {
+      const res = await axios.post("http://localhost:4041/v1/shop/product",data);
+      return res;
+  } catch (err) {
+    console.log("error: ", err);
+  }
+};

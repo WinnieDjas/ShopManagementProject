@@ -13,9 +13,11 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { Card } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import auth, {authActions} from "../../redux/auth";
 
 export default function AccountMenu() {
+  const dispatch = useDispatch();
   const navigate= useNavigate();
   const { user } = useSelector((state)=>state.auth);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -44,7 +46,7 @@ export default function AccountMenu() {
             onClick={handleClick}
             size="small"
             sx={{ ml: 2 }}
-            aria-controls={open ? "account-menu" : undefined}
+            aria-controls= { open ? "account-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
@@ -106,9 +108,10 @@ export default function AccountMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={()=>
-         navigate("/login")
-        }>
+        <MenuItem onClick={()=>{
+          dispatch(authActions.logoutAction({}));
+         navigate("/login");
+        }}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

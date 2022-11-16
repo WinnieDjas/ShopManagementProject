@@ -17,7 +17,7 @@ export const create= (Model) => async (req,res, next) =>{
 
 export const getAll= (Model) => async (req,res, next) =>{
     try{
-         const data= await Model.find() .select("-password");
+         const data= await Model.find(); //.select("-password");
          if(!data){
             return Response.errorMessage (
                 res,"failed to get", status.BAD_REQUEST
@@ -30,7 +30,7 @@ export const getAll= (Model) => async (req,res, next) =>{
 };
 export const getOneById= (Model) => async (req,res, next) =>{
     try{
-         const data= await Model.findById(req.params.id).select("-password");
+         const data= await Model.findById(req.params.id);//.select("-password");
          if(!data){
             return Response.errorMessage (
                 res,"failed to get", status.BAD_REQUEST

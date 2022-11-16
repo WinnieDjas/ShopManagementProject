@@ -7,42 +7,35 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProductAction } from "../redux/product/actions";
 
-export default function BasicTable() {
-  const dispatch = useDispatch();
-const {products,isFetching} = useSelector((state)=>state.product)
-  useEffect(() => {
-    getAllProductAction()(dispatch);
-  }, []);
+export default function BasicTable(props) {
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>No</TableCell>
-            <TableCell>Product Name</TableCell>
-            <TableCell align="right"> unity</TableCell>
-            <TableCell align="right">Description</TableCell>
-            <TableCell align="right">Status</TableCell>
+            {props.tableData.map((data)=> (
+              <TableCell>{data.title} </TableCell>
+            ))}
+            
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((row, index) => (
+          {props.items.map((row, index) => (
             <TableRow
-              key={row.name}
+              key={row.names}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
                 {index + 1}
               </TableCell>
-              <TableCell align="left">{row.names}</TableCell>
-              <TableCell align="right">{row.unity}</TableCell>
-              <TableCell align="right">{row.description}</TableCell>
-              <TableCell align="right">
-                {row.isActive ? "Is Available" : "Is Not Available"}
-              </TableCell>
+             
+                {props.tableData.map((data,index)=>(
+                  <TableCell align="left">{row[data.name]}</TableCell>
+                ))}
+              
             </TableRow>
           ))}
         </TableBody>
