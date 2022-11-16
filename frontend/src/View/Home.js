@@ -1,11 +1,30 @@
-import React from "react";
+import React,{ useState, useEffect} from "react";
 import { Container, Grid, Card, TextField, Stack, Button } from "@mui/material";
 import "./index.css";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { useNavigate } from "react-router-dom";
-// import logo from "../assets/logo.jpeg";
+import {loginAction} from "../redux/auth/actions";
+import {useDispatch, useSelector} from "react-redux";
+import logo from "../Assets/logo.jpeg";
+
+
 const styles = { width: "100%", height: "100vh" };
 const ViewComponent = (props) => {
   const navigate = useNavigate();
+  const dispatch= useDispatch();
+  const {token,isFetching}= useSelector((state) =>state?.auth);
+  const [password,setPassword]= useState ();
+const [email,setEmail]= useState ();
+
+const login=()=>{
+  loginAction({email,password})(dispatch);
+}
+useEffect(()=> {
+  if(token){
+    navigate ("/dashboard");
+  }
+},[token])
+
   return (
     <Container sx={styles}>
       <Grid
@@ -19,7 +38,7 @@ const ViewComponent = (props) => {
         <Grid item sm={6} xs={12}>
           <Card className="signin_container">
             <Stack spacing={2} alignItems="center" justifyContent="center">
-              {/* <img src={logo} alt="logo" /> */}
+              <img src={logo} alt="logo" />
               <label>Signin Shop Managment</label>
 
               <TextField
@@ -27,22 +46,28 @@ const ViewComponent = (props) => {
                 id="filled-basic"
                 label="Email"
                 variant="filled"
+                onChange={(e)=>setEmail(e.target.value)}
               />
               <TextField
                 fullWidth
                 id="filled-basic"
                 label="Password"
                 variant="filled"
+                onChange={(e)=>setPassword(e.target.value)}
+
               />
-              <Button
+              <LoadingButton
+                loading ={isFetching}
                 fullWidth
                 variant="contained"
                 onClick={() => {
-                  navigate("/dashboard");
+                  // navigate("/dashboard");
+                  console.log({email,password});
+                  login();
                 }}
               >
                 Signin
-              </Button>
+              </LoadingButton>
             </Stack>
           </Card>
         </Grid>

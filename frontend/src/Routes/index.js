@@ -9,6 +9,7 @@ import PurchaseView from "../View/Purchase";
 import UsersView from "../View/User";
 import DashRoutes from "./DashRoutes";
 
+
 const MainRoutes = () => {
   return (
     <Routes>

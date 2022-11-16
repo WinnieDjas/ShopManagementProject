@@ -1,10 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
 import DashLayout from "../Component/Dashlayout";
+import { useSelector } from "react-redux";
 
 const DashRoutes = () => {
-  let auth = { token: true };
+  let token = true ;
 
-  return auth.token ? (
+  return token ? (
     <DashLayout>
       <Outlet />
     </DashLayout>
