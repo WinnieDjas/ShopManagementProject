@@ -39,7 +39,7 @@ useEffect(()=> {
           <Card className="signin_container">
             <Stack spacing={2} alignItems="center" justifyContent="center">
               <img src={logo} alt="logo" />
-              <label>Signin Shop Managment</label>
+              <label>Signin Shop Managments</label>
 
               <TextField
                 fullWidth

@@ -14,7 +14,7 @@ const Component = (props) =>{
     return(
         <Paper sx={{width: "50%", padding: "5rem"}}>
         <Stack direction="column" spacing={3}>
-            <Typography div="h1"> Create Product</Typography>
+            <Typography div="h1"> Create Product Number</Typography>
             <TextField
              fullWidth
              id="outlined-basic"
